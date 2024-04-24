@@ -17,7 +17,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>false</Use64BitIISExpress>
     <IISExpressSSLPort>44304</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -45,10 +45,41 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Json.8.0.0\lib\net462\System.Net.Http.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.8.0.0\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,12 +151,26 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\VentasController.cs" />
+    <Compile Include="Entidades\Carrito.cs" />
+    <Compile Include="Entidades\Confirmacion.cs" />
+    <Compile Include="Entidades\Producto.cs" />
+    <Compile Include="Entidades\TiposCategoria.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="Entidades\Ventas.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CarritoModel.cs" />
+    <Compile Include="Models\FiltroAdmin.cs" />
+    <Compile Include="Models\FiltroSeguridad.cs" />
+    <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
+    <Compile Include="Models\VentasModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -153,12 +198,21 @@
     <Content Include="Estilos\img\undraw_profile_2.svg" />
     <Content Include="Estilos\img\undraw_profile_3.svg" />
     <Content Include="Estilos\img\undraw_rocket.svg" />
+    <Content Include="Estilos\js\chart-area-demo.js" />
+    <Content Include="Estilos\js\chart-bar-demo.js" />
+    <Content Include="Estilos\js\chart-pie-demo.js" />
+    <Content Include="Estilos\js\datatables-demo.js" />
+    <Content Include="Estilos\js\RegistroUsuarios.js" />
     <Content Include="Estilos\js\sb-admin-2.js" />
     <Content Include="Estilos\js\sb-admin-2.min.js" />
     <Content Include="Estilos\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Estilos\vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Estilos\vendor\bootstrap\js\bootstrap.js" />
     <Content Include="Estilos\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Estilos\vendor\chart.js\Chart.bundle.js" />
+    <Content Include="Estilos\vendor\chart.js\Chart.bundle.min.js" />
+    <Content Include="Estilos\vendor\chart.js\Chart.js" />
+    <Content Include="Estilos\vendor\chart.js\Chart.min.js" />
     <Content Include="Estilos\vendor\jquery-easing\jquery.easing.compatibility.js" />
     <Content Include="Estilos\vendor\jquery-easing\jquery.easing.js" />
     <Content Include="Estilos\vendor\jquery-easing\jquery.easing.min.js" />
@@ -297,10 +351,19 @@
     <Content Include="Views\Inicio\RegistrarUsuario.cshtml" />
     <Content Include="Views\Shared\_LayoutExterno.cshtml" />
     <Content Include="Views\Inicio\PantallaPrincipal.cshtml" />
+    <Content Include="Views\Inicio\RecuperarAcceso.cshtml" />
+    <Content Include="Views\Producto\ConsultaProductos.cshtml" />
+    <Content Include="Views\Producto\RegistrarProducto.cshtml" />
+    <Content Include="Views\Producto\ActualizarProducto.cshtml" />
+    <Content Include="Views\Usuario\ActualizarUsuario.cshtml" />
+    <Content Include="Views\Carrito\ConsultaCarrito.cshtml" />
+    <Content Include="Views\Carrito\ConsultarFacturas.cshtml" />
+    <Content Include="Views\Carrito\ConsultarDetalleFacturas.cshtml" />
+    <Content Include="Views\Ventas\ConsultaVentas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Usuario\" />
+    <Folder Include="ImgProductos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
